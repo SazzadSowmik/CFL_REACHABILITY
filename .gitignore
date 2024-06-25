@@ -1,0 +1,11 @@
+# Compiled files
+*.o
+*.out
+*.exe
+
+# Build directory
+build/
+
+# Other
+*.log
+*.tmp
