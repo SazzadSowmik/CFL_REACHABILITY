@@ -8,5 +8,5 @@ This project implements the CFL reachability problem for balanced parentheses us
 
 ```sh
 cd src
-./run.sh <input_file> ...
+./run.sh ../data/example_input.txt
 ```
