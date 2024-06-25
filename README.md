@@ -10,3 +10,5 @@ This project implements the CFL reachability problem for balanced parentheses us
 cd src
 ./run.sh ../data/example_input.txt
 ```
+
+To check different brackets change the input file on ./data/example_input.txt
