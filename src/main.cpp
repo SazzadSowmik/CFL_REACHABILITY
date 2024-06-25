@@ -15,28 +15,14 @@ int main(int argc, char* argv[]) {
         string input_file = argv[i];
         Graph graph = Graph::loadFromFile(input_file);
 
-        // Print the edges of the graph
-        const auto& edges = graph.getEdges();
-        cout << "Edges in the graph from file: " << input_file << endl;
-        for (const auto& node : edges) {
-            int from = node.first;
-            for (const auto& edge : node.second) {
-                char label = edge.first;
-                int to = edge.second;
-                cout << from << " " << label << " " << to << endl;
-            }
-        }
-
-
-
-
-        // auto result = reachabilityAnalysis(graph);
+        // Perform reachability analysis
+        auto result = reachabilityAnalysis(graph);
         
-        // // Output the results
-        // cout << "Results for file: " << input_file << endl;
-        // for (const auto& pair : result) {
-        //     cout << "(" << pair.first << ", " << pair.second << ")" << endl;
-        // }
+        // Output the results
+        cout << "Results for file: " << input_file << endl;
+        for (const auto& pair : result) {
+            cout << "(" << pair.first << ", " << pair.second << ")" << endl;
+        }
     }
 
     return 0;
