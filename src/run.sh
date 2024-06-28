@@ -4,8 +4,6 @@
 cd ..
 make
 
-# Run the executable with provided input files
+# Run the executable with all provided arguments
 cd src
-for file in "$@"; do
-    ../run "$file"
-done
+../run "$@"
