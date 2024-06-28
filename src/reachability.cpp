@@ -1,13 +1,8 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-compare"
+
 #include "reachability.h"
-#include "cfg.h"
-
 #define MAX 100
-string CFG[MAX][MAX];
-string temp_prod[MAX];
-string cyk[MAX][MAX];
-vector<pair<int, pair<int, int>>> right_tree[MAX][MAX];
-vector<pair<int, pair<int, int>>> left_tree[MAX][MAX];
-
 
 string gram[MAX][MAX];  //to store entered grammar
 int np;	
@@ -21,7 +16,7 @@ string concat(string a, string b) {
 	return r;
 }
 
-//creates every combination of variables from a and b . For eg: BA * AB = {BA, BB, AA, BB}
+//All the combinations BA * AB = {BA, BB, AA, BB}
 string gen_comb(string a, string b) {
 	string pri, re = "";
 	for (int i = 0; i < a.length(); i++)
@@ -152,7 +147,7 @@ bool is_member(const string& sa) {
 			l = str.length() - i - 1;
 			for (j=l; j<str.length(); j++)
 			{
-				cout << "     " << matrix[k++][j] << " ";
+				cout << "     " << table[k++][j] << " ";
 			}
 			cout << endl;
 		}
@@ -162,16 +157,14 @@ bool is_member(const string& sa) {
 		if (table[0][str.length() - 1].find(start) <= table[0][str.length() - 1].length()){
             return true;
         }
-        return false;
 	}
+    return false;
 }
 
-vector<pair<int, int>> reachabilityAnalysis(const Graph &graph, const vector<CFG::Production> &productions, char startSymbol)
+vector<pair<int, int>> reachabilityAnalysis(const Graph &graph)
 {
     vector<pair<int, int>> result;
     unordered_map<int, vector<pair<char, int>>> edges = graph.getEdges();
-    // queue<tuple<int, int, char>> W;
-    // unordered_map<int, unordered_map<int, unordered_set<char>>> reach;
 
     vector<pair<pair<int, int>, string>> all_strings;
 
@@ -203,20 +196,13 @@ vector<pair<int, int>> reachabilityAnalysis(const Graph &graph, const vector<CFG
         dfs(from, from, "");
     }
 
-    // Print debug information
-    cout << "Debug: Generated paths" << endl;
-    for (const auto &entry : all_strings)
-    {
-        cout << "(" << entry.first.first << ", " << entry.first.second << ") => " << entry.second << endl;
-    }
-
     for (const auto &entry : all_strings)
     {
         if (is_member(entry.second)) {
             result.push_back({entry.first.first, entry.first.second});
-            cout << entry.second << " is a Part of language\n";
+            // cout << entry.second << " - is a Part of language\n";
         } else {
-            cout << entry.second << " is Not a Part of language\n";
+            // cout << entry.second << " - is Not a Part of language\n";
         }
     }
 

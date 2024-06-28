@@ -3,10 +3,9 @@
 
 #include "bits/stdc++.h"
 #include "graph.h"
-#include "cfg.h"
 
 using namespace std;
 
-vector<pair<int, int>> reachabilityAnalysis(const Graph& graph, const vector<CFG::Production>& productions, char startSymbol);
+vector<pair<int, int>> reachabilityAnalysis(const Graph& graph);
 
 #endif // REACHABILITY_H
